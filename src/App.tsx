@@ -1,5 +1,11 @@
-function App() {
-  return <p className="text-green-300">hi</p>;
-}
+import TextCompareMobileHeader from "./components/TextCompareMobileHeader";
+
+const App = () => {
+  return (
+    <main className="min-h-screen bg-[#F3F3F4]">
+      <TextCompareMobileHeader />
+    </main>
+  );
+};
 
 export default App;
