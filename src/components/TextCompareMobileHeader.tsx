@@ -1,27 +1,14 @@
 import enagramLogo from "../assets/enagram-logo.svg";
 import menuHamburger from "../assets/menu-hamburger.svg";
 import sidebarTextCompare from "../assets/sidebar-text-compare.svg";
+import SubheaderChevron from "./SubheaderChevron";
 
-const SubheaderChevron = () => {
-  return (
-    <svg
-      aria-hidden="true"
-      className="h-3.5 w-3.5 text-[#132450]/70"
-      fill="none"
-      viewBox="0 0 14 14"
-    >
-      <path
-        d="M2.8 4.9L7 9.1L11.2 4.9"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.5"
-      />
-    </svg>
-  );
+type TextCompareMobileHeaderProps = {
+  isMenuOpen: boolean;
+  onToggleMenu: () => void;
 };
 
-const TextCompareMobileHeader = () => {
+const TextCompareMobileHeader = ({ isMenuOpen, onToggleMenu }: TextCompareMobileHeaderProps) => {
   return (
     <header className="w-full bg-[#F3F3F4]">
       {/* მობილურის ზედა ნავიგაციის ზოლი */}
@@ -36,7 +23,11 @@ const TextCompareMobileHeader = () => {
       </div>
 
       {/* აქტიური გვერდის სათაური */}
-      <div className="flex h-14 items-center border-b border-[#E3E4E8] px-5">
+      <button
+        className="flex h-14 w-full items-center border-b border-[#E3E4E8] px-5 text-left"
+        onClick={onToggleMenu}
+        type="button"
+      >
         <div className="flex items-center gap-2">
           <img
             alt="ტექსტის შედარება"
@@ -46,9 +37,9 @@ const TextCompareMobileHeader = () => {
           <p className="text-xs leading-5 font-bold text-[#132450]">
             ტექსტის შედარება
           </p>
-          <SubheaderChevron />
+          <SubheaderChevron isOpen={isMenuOpen} />
         </div>
-      </div>
+      </button>
     </header>
   );
 };
