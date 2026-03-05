@@ -1,7 +1,25 @@
 import enagramLogo from "../assets/enagram-logo.svg";
 import menuHamburger from "../assets/menu-hamburger.svg";
-import chevronDown from "../assets/chevron-down.svg";
 import sidebarTextCompare from "../assets/sidebar-text-compare.svg";
+
+const SubheaderChevron = () => {
+  return (
+    <svg
+      aria-hidden="true"
+      className="h-3.5 w-3.5 text-[#132450]/70"
+      fill="none"
+      viewBox="0 0 14 14"
+    >
+      <path
+        d="M2.8 4.9L7 9.1L11.2 4.9"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.5"
+      />
+    </svg>
+  );
+};
 
 const TextCompareMobileHeader = () => {
   return (
@@ -19,16 +37,16 @@ const TextCompareMobileHeader = () => {
 
       {/* აქტიური გვერდის სათაური */}
       <div className="flex h-14 items-center border-b border-[#E3E4E8] px-5">
-        <div className="flex items-center gap-2.5">
+        <div className="flex items-center gap-2">
           <img
             alt="ტექსტის შედარება"
-            className="h-6 w-6"
+            className="h-4 w-4"
             src={sidebarTextCompare}
           />
-          <p className="text-xl font-semibold text-[#132450]">
+          <p className="text-xs leading-5 font-bold text-[#132450]">
             ტექსტის შედარება
           </p>
-          <img alt="ჩამოსაშლელი" className="h-1.5 w-2.5" src={chevronDown} />
+          <SubheaderChevron />
         </div>
       </div>
     </header>
