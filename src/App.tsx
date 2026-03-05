@@ -12,8 +12,10 @@ const App = () => {
   const [rightSegments, setRightSegments] = useState<DiffSegment[]>([]);
   const [hasCompared, setHasCompared] = useState(false);
   const [isToolsMenuOpen, setIsToolsMenuOpen] = useState(false);
+  const isCompareEnabled = sourceText.trim().length > 0 && targetText.trim().length > 0;
 
   const handleCompare = () => {
+    if (!isCompareEnabled) return;
     const { leftSegments: nextLeftSegments, rightSegments: nextRightSegments } = compareTexts(sourceText, targetText);
     setLeftSegments(nextLeftSegments);
     setRightSegments(nextRightSegments);
@@ -35,12 +37,15 @@ const App = () => {
   };
 
   return (
-    <main className="min-h-screen bg-[#F3F3F4]">
+    <main className="relative min-h-screen bg-[#F3F3F4]">
       <TextCompareMobileHeader isMenuOpen={isToolsMenuOpen} onToggleMenu={() => setIsToolsMenuOpen((currentState) => !currentState)} />
-      <TextCompareToolsMenu isOpen={isToolsMenuOpen} />
+      <div className="absolute left-0 top-15 z-30">
+        <TextCompareToolsMenu isOpen={isToolsMenuOpen} />
+      </div>
       <TextCompareControlsMobile onReset={handleReset} />
       <TextCompareWorkspaceMobile
         hasCompared={hasCompared}
+        isCompareEnabled={isCompareEnabled}
         leftSegments={leftSegments}
         onCompare={handleCompare}
         onSourceTextChange={setSourceText}

@@ -24,7 +24,7 @@ const TextCompareMobileHeader = ({ isMenuOpen, onToggleMenu }: TextCompareMobile
 
       {/* აქტიური გვერდის სათაური */}
       <button
-        className="flex h-14 w-full items-center border-b border-[#E3E4E8] px-5 text-left"
+        className="flex h-14 w-full cursor-pointer items-center border-b border-[#E3E4E8] px-5 text-left"
         onClick={onToggleMenu}
         type="button"
       >

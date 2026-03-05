@@ -15,13 +15,7 @@ const DiffTextView = ({ segments, placeholder }: DiffTextViewProps) => {
           {segments.map((segment, segmentIndex) => (
             <span
               key={`${segment.kind}-${segmentIndex}`}
-              className={
-                segment.kind === "remove"
-                  ? "bg-[#FDEAEA] text-[#D94E4E]"
-                  : segment.kind === "add"
-                    ? "bg-[#E8F8EE] text-[#2C9C5A]"
-                    : "text-[#383A48]"
-              }
+              className={segment.kind === "equal" ? "text-[#383A48]" : "rounded-[0.125rem] bg-[#6ACF76]"}
             >
               {segment.text}
             </span>
