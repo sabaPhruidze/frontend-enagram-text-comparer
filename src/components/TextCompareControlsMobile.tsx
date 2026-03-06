@@ -8,7 +8,7 @@ const TextCompareControlsMobile = ({ isFormattingPreserved, isResetEnabled, onFo
     <section className="px-4 pb-4 pt-6">
       <div className="mx-auto flex w-72 flex-col gap-4">
         <div className="flex h-10 items-center rounded-lg border border-[#D2D4D8] bg-white px-3.5 py-1 pr-1.5">
-          <p className="text-sm leading-[1.375rem] font-normal text-[#383A48]">ქართული</p>
+          <p className="text-sm leading-5.5 font-normal text-[#383A48]">ქართული</p>
           <div className="ml-auto"><SelectChevron /></div>
         </div>
 
@@ -20,7 +20,7 @@ const TextCompareControlsMobile = ({ isFormattingPreserved, isResetEnabled, onFo
             onChange={(event) => onFormattingPreserveChange(event.target.checked)}
             type="checkbox"
           />
-          <span className="text-sm leading-[1.375rem] font-normal tracking-[0.01em] text-[#383A48]">ფორმატის შენარჩუნება</span>
+          <span className="text-sm leading-5.5 font-normal tracking-[0.01em] text-[#383A48]">ფორმატის შენარჩუნება</span>
         </label>
 
         <button
@@ -39,3 +39,4 @@ const TextCompareControlsMobile = ({ isFormattingPreserved, isResetEnabled, onFo
 };
 
 export default TextCompareControlsMobile;
+

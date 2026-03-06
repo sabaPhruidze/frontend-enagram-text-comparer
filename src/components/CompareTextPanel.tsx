@@ -20,7 +20,7 @@ const CompareTextPanel = ({
 
   return (
     <textarea
-      className="h-47.5 w-full resize-none rounded-lg bg-[#F0F7FF] p-3 text-sm leading-[1.375rem] text-[#383A48] outline-none placeholder:text-[#8E98A8]"
+      className="h-47.5 w-full resize-none rounded-lg bg-[#F0F7FF] p-3 text-sm leading-5.5 text-[#383A48] outline-none placeholder:text-[#8E98A8]"
       onChange={(event) => onTextChange(event.target.value)}
       placeholder="დაიწერე ტექსტი..."
       value={textValue}
@@ -29,3 +29,4 @@ const CompareTextPanel = ({
 };
 
 export default CompareTextPanel;
+

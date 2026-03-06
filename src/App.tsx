@@ -10,45 +10,23 @@ import useTextCompareState from "./hooks/useTextCompareState";
 const App = () => {
   const [isToolsMenuOpen, setIsToolsMenuOpen] = useState(false);
   const [selectedToolId, setSelectedToolId] = useState<ToolId>(TEXT_COMPARE_TOOL_ID);
+  const [toolsMenuWidth, setToolsMenuWidth] = useState(0);
   const compareState = useTextCompareState();
   const selectedTool = useMemo(() => TOOL_OPTIONS.find((toolOption) => toolOption.id === selectedToolId) ?? TOOL_OPTIONS[0], [selectedToolId]);
   const toolsToShow = useMemo(() => TOOL_OPTIONS.filter((toolOption) => toolOption.id !== selectedToolId), [selectedToolId]);
   const isTextCompareTool = selectedToolId === TEXT_COMPARE_TOOL_ID;
-
-  const handleToolSelect = (toolId: ToolId) => {
-    setSelectedToolId(toolId);
-    setIsToolsMenuOpen(false);
-  };
+  const handleToolSelect = (toolId: ToolId) => { setSelectedToolId(toolId); setIsToolsMenuOpen(false); };
 
   return (
     <main className="relative min-h-screen bg-white">
-      <TextCompareMobileHeader isMenuOpen={isToolsMenuOpen} onToggleMenu={() => setIsToolsMenuOpen((currentState) => !currentState)} selectedTool={selectedTool} />
-      <div className="absolute left-0 top-[7.25rem] z-40 w-full">
+      <TextCompareMobileHeader isMenuOpen={isToolsMenuOpen} onToggleMenu={() => setIsToolsMenuOpen((currentState) => !currentState)} onTriggerWidthChange={setToolsMenuWidth} selectedTool={selectedTool} />
+      <div className="absolute left-5 top-[7.25rem] z-40" style={{ width: toolsMenuWidth > 0 ? `${toolsMenuWidth}px` : "auto" }}>
         <TextCompareToolsMenu isOpen={isToolsMenuOpen} onSelectTool={handleToolSelect} tools={toolsToShow} />
       </div>
-
       {isTextCompareTool ? (
         <>
-          <TextCompareControlsMobile
-            isFormattingPreserved={compareState.isFormattingPreserved}
-            isResetEnabled={compareState.isResetEnabled}
-            onFormattingPreserveChange={compareState.setIsFormattingPreserved}
-            onReset={compareState.handleReset}
-          />
-          <TextCompareWorkspaceMobile
-            hasCompared={compareState.hasCompared}
-            isCompareEnabled={compareState.isCompareEnabled}
-            isComparing={compareState.isComparing}
-            leftSegments={compareState.leftSegments}
-            onCompare={compareState.handleCompare}
-            onSourceTextChange={compareState.setSourceText}
-            onSwapTexts={compareState.handleSwapTexts}
-            onTargetTextChange={compareState.setTargetText}
-            progressValue={compareState.progressValue}
-            rightSegments={compareState.rightSegments}
-            sourceText={compareState.sourceText}
-            targetText={compareState.targetText}
-          />
+          <TextCompareControlsMobile isFormattingPreserved={compareState.isFormattingPreserved} isResetEnabled={compareState.isResetEnabled} onFormattingPreserveChange={compareState.setIsFormattingPreserved} onReset={compareState.handleReset} />
+          <TextCompareWorkspaceMobile hasCompared={compareState.hasCompared} isCompareEnabled={compareState.isCompareEnabled} isComparing={compareState.isComparing} leftSegments={compareState.leftSegments} onCompare={compareState.handleCompare} onSourceTextChange={compareState.setSourceText} onSwapTexts={compareState.handleSwapTexts} onTargetTextChange={compareState.setTargetText} progressValue={compareState.progressValue} rightSegments={compareState.rightSegments} sourceText={compareState.sourceText} targetText={compareState.targetText} />
         </>
       ) : (
         <ToolInProgressState toolLabel={selectedTool.label} />

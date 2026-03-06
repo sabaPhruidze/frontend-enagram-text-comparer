@@ -1,15 +1,20 @@
+import { useEffect, useRef } from "react";
 import enagramLogo from "../assets/enagram-logo.svg";
 import menuHamburger from "../assets/menu-hamburger.svg";
 import type { ToolOption } from "../constants/toolOptions";
 import SubheaderChevron from "./SubheaderChevron";
 
-type TextCompareMobileHeaderProps = {
-  isMenuOpen: boolean;
-  onToggleMenu: () => void;
-  selectedTool: ToolOption;
-};
+type TextCompareMobileHeaderProps = { isMenuOpen: boolean; onToggleMenu: () => void; onTriggerWidthChange: (widthValue: number) => void; selectedTool: ToolOption };
 
-const TextCompareMobileHeader = ({ isMenuOpen, onToggleMenu, selectedTool }: TextCompareMobileHeaderProps) => {
+const TextCompareMobileHeader = ({ isMenuOpen, onToggleMenu, onTriggerWidthChange, selectedTool }: TextCompareMobileHeaderProps) => {
+  const triggerContentRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (!triggerContentRef.current) return;
+    const triggerWidth = Math.ceil(triggerContentRef.current.getBoundingClientRect().width);
+    onTriggerWidthChange(triggerWidth);
+  }, [onTriggerWidthChange, selectedTool.id]);
+
   return (
     <header className="w-full bg-white">
       <div className="flex h-15 items-center justify-between bg-[#132450] px-5">
@@ -20,13 +25,8 @@ const TextCompareMobileHeader = ({ isMenuOpen, onToggleMenu, selectedTool }: Tex
         <img alt="მენიუ" className="h-6 w-6" src={menuHamburger} />
       </div>
 
-      {/* აქტიური ინსტრუმენტის ზოლი */}
-      <button
-        className="flex h-14 w-full cursor-pointer items-center border-b border-[#E3E4E8] px-5 text-left"
-        onClick={onToggleMenu}
-        type="button"
-      >
-        <div className="flex items-center gap-2">
+      <button className="flex h-14 w-full cursor-pointer items-center border-b border-[#E3E4E8] px-5 text-left" onClick={onToggleMenu} type="button">
+        <div className="flex items-center gap-2" ref={triggerContentRef}>
           <img alt={selectedTool.label} className="h-4 w-4" src={selectedTool.icon} />
           <p className="text-xs leading-5 font-bold text-[#132450]">{selectedTool.label}</p>
           <SubheaderChevron isOpen={isMenuOpen} />

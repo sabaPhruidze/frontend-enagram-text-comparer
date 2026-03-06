@@ -3,8 +3,12 @@ import { compareTexts, type DiffSegment } from "../utils/textDiff";
 
 type ComparisonStage = "idle" | "loading" | "done";
 
+const keepGeorgianText = (rawText: string) => rawText.replace(/[^\u10A0-\u10FF\s]/gu, "");
 const normalizeText = (rawText: string) => rawText.replace(/\s+/g, " ").trim();
-const prepareTextForCompare = (rawText: string, isFormattingPreserved: boolean) => (isFormattingPreserved ? rawText : normalizeText(rawText));
+const prepareTextForCompare = (rawText: string, isFormattingPreserved: boolean) => {
+  const georgianOnlyText = keepGeorgianText(rawText);
+  return isFormattingPreserved ? georgianOnlyText : normalizeText(georgianOnlyText);
+};
 
 const useTextCompareState = () => {
   const [sourceText, setSourceText] = useState("");
@@ -15,7 +19,9 @@ const useTextCompareState = () => {
   const [comparisonStage, setComparisonStage] = useState<ComparisonStage>("idle");
   const [progressValue, setProgressValue] = useState(0);
   const [isFormattingPreserved, setIsFormattingPreserved] = useState(false);
-  const isCompareReady = sourceText.trim().length > 0 && targetText.trim().length > 0;
+  const hasSourceContent = keepGeorgianText(sourceText).trim().length > 0;
+  const hasTargetContent = keepGeorgianText(targetText).trim().length > 0;
+  const isCompareReady = hasSourceContent && hasTargetContent;
   const isComparing = comparisonStage === "loading";
   const isCompareEnabled = isCompareReady && !isComparing;
   const isResetEnabled = comparisonStage !== "idle";
