@@ -4,15 +4,25 @@ import menuHamburger from "../assets/menu-hamburger.svg";
 import type { ToolOption } from "../constants/toolOptions";
 import SubheaderChevron from "./SubheaderChevron";
 
-type TextCompareMobileHeaderProps = { isMenuOpen: boolean; onToggleMenu: () => void; onTriggerWidthChange: (widthValue: number) => void; selectedTool: ToolOption };
+type TextCompareMobileHeaderProps = {
+  isMenuOpen: boolean;
+  onToggleMenu: () => void;
+  onTriggerWidthChange: (widthValue: number) => void;
+  selectedTool: ToolOption;
+};
 
 const TextCompareMobileHeader = ({ isMenuOpen, onToggleMenu, onTriggerWidthChange, selectedTool }: TextCompareMobileHeaderProps) => {
   const triggerContentRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
     if (!triggerContentRef.current) return;
-    const triggerWidth = Math.ceil(triggerContentRef.current.getBoundingClientRect().width);
-    onTriggerWidthChange(triggerWidth);
+    const triggerElement = triggerContentRef.current;
+    const updateWidth = () => onTriggerWidthChange(Math.ceil(triggerElement.getBoundingClientRect().width));
+    updateWidth();
+    const widthObserver = new ResizeObserver(updateWidth);
+    widthObserver.observe(triggerElement);
+    window.addEventListener("resize", updateWidth);
+    return () => { widthObserver.disconnect(); window.removeEventListener("resize", updateWidth); };
   }, [onTriggerWidthChange, selectedTool.id]);
 
   return (

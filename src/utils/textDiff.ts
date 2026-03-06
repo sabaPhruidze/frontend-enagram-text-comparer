@@ -1,10 +1,10 @@
 import type { LanguageCode } from "../constants/languageOptions";
+import { tokenizeTextByLanguage } from "./languageRules";
 
 export type DiffKind = "equal" | "add" | "remove";
 export type DiffSegment = { kind: DiffKind; text: string };
 type DiffResult = { leftSegments: DiffSegment[]; rightSegments: DiffSegment[] };
 
-const tokenizeText = (textValue: string, selectedLanguage: LanguageCode) => (selectedLanguage === "ka" ? textValue.match(/[\p{Script=Georgian}]+|\s+/gu) ?? [] : textValue.match(/[A-Za-z]+|\s+/g) ?? []);
 const mergeSegments = (segments: DiffSegment[]) => segments.reduce<DiffSegment[]>((mergedSegments, currentSegment) => {
   const lastSegment = mergedSegments.at(-1);
   if (!lastSegment || lastSegment.kind !== currentSegment.kind) {
@@ -30,8 +30,12 @@ const buildLcsTable = (sourceTokens: string[], targetTokens: string[]) => {
 };
 
 export const compareTexts = (sourceText: string, targetText: string, selectedLanguage: LanguageCode): DiffResult => {
-  const sourceTokens = tokenizeText(sourceText, selectedLanguage);
-  const targetTokens = tokenizeText(targetText, selectedLanguage);
+  if (sourceText === targetText) {
+    return { leftSegments: [{ kind: "equal", text: sourceText }], rightSegments: [{ kind: "equal", text: targetText }] };
+  }
+
+  const sourceTokens = tokenizeTextByLanguage(sourceText, selectedLanguage);
+  const targetTokens = tokenizeTextByLanguage(targetText, selectedLanguage);
   const lcsTable = buildLcsTable(sourceTokens, targetTokens);
   const leftSegments: DiffSegment[] = [];
   const rightSegments: DiffSegment[] = [];

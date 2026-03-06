@@ -1,0 +1,40 @@
+import type { LanguageCode } from "../constants/languageOptions";
+
+const georgianLetterPattern = /\p{Script=Georgian}/u;
+const englishLetterPattern = /[A-Za-z]/;
+const georgianTextPattern = /[^\p{Script=Georgian}\s]/gu;
+const englishTextPattern = /[^A-Za-z\s]/g;
+const extractLetters = (rawText: string) => rawText.match(/\p{L}/gu) ?? [];
+
+const isLetterAllowedForLanguage = (
+  letterValue: string,
+  selectedLanguage: LanguageCode,
+) => (selectedLanguage === "ka" ? georgianLetterPattern.test(letterValue) : englishLetterPattern.test(letterValue));
+
+export const sanitizeTextByLanguage = (
+  rawText: string,
+  selectedLanguage: LanguageCode,
+) => (selectedLanguage === "ka" ? rawText.replace(georgianTextPattern, "") : rawText.replace(englishTextPattern, ""));
+
+export const normalizeWhitespace = (rawText: string) => rawText.replace(/\s+/g, " ").trim();
+
+export const prepareTextForCompare = (rawText: string, isFormattingPreserved: boolean, selectedLanguage: LanguageCode) => {
+  const safeText = sanitizeTextByLanguage(rawText, selectedLanguage);
+  return isFormattingPreserved ? safeText : normalizeWhitespace(safeText);
+};
+
+export const hasInvalidLettersForLanguage = (
+  rawText: string,
+  selectedLanguage: LanguageCode,
+) => extractLetters(rawText).some((letterValue) => !isLetterAllowedForLanguage(letterValue, selectedLanguage));
+
+export const getLanguageValidationMessage = (rawText: string, selectedLanguage: LanguageCode) => {
+  if (!hasInvalidLettersForLanguage(rawText, selectedLanguage)) return "";
+  return selectedLanguage === "ka" ? "არასწორი ენა: მხოლოდ ქართული ასოებია დაშვებული." : "Wrong language: only English letters are allowed.";
+};
+
+export const tokenizeTextByLanguage = (rawText: string, selectedLanguage: LanguageCode) => (
+  selectedLanguage === "ka"
+    ? rawText.match(/[\p{Script=Georgian}]+|\s+/gu) ?? []
+    : rawText.match(/[A-Za-z]+|\s+/g) ?? []
+);
