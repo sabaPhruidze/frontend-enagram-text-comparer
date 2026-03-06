@@ -10,7 +10,7 @@ type TextCompareMobileHeaderProps = {
 
 const TextCompareMobileHeader = ({ isMenuOpen, onToggleMenu }: TextCompareMobileHeaderProps) => {
   return (
-    <header className="w-full bg-[#F3F3F4]">
+    <header className="w-full bg-white">
       {/* მობილურის ზედა ნავიგაციის ზოლი */}
       <div className="flex h-15 items-center justify-between bg-[#132450] px-5">
         <div className="flex h-9 w-22.5 items-center justify-between">
