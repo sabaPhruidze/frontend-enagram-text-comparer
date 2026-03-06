@@ -25,8 +25,8 @@ const App = () => {
       </div>
       {isTextCompareTool ? (
         <>
-          <TextCompareControlsMobile isFormattingPreserved={compareState.isFormattingPreserved} isResetEnabled={compareState.isResetEnabled} onFormattingPreserveChange={compareState.setIsFormattingPreserved} onReset={compareState.handleReset} />
-          <TextCompareWorkspaceMobile hasCompared={compareState.hasCompared} isCompareEnabled={compareState.isCompareEnabled} isComparing={compareState.isComparing} leftSegments={compareState.leftSegments} onCompare={compareState.handleCompare} onSourceTextChange={compareState.setSourceText} onSwapTexts={compareState.handleSwapTexts} onTargetTextChange={compareState.setTargetText} progressValue={compareState.progressValue} rightSegments={compareState.rightSegments} sourceText={compareState.sourceText} targetText={compareState.targetText} />
+          <TextCompareControlsMobile isFormattingPreserved={compareState.isFormattingPreserved} isResetEnabled={compareState.isResetEnabled} onFormattingPreserveChange={compareState.setIsFormattingPreserved} onLanguageChange={compareState.handleLanguageChange} onReset={compareState.handleReset} selectedLanguage={compareState.selectedLanguage} />
+          <TextCompareWorkspaceMobile hasCompared={compareState.hasCompared} isCompareEnabled={compareState.isCompareEnabled} isComparing={compareState.isComparing} leftSegments={compareState.leftSegments} onCompare={compareState.handleCompare} onSourceTextChange={compareState.setSourceText} onSwapTexts={compareState.handleSwapTexts} onTargetTextChange={compareState.setTargetText} progressValue={compareState.progressValue} rightSegments={compareState.rightSegments} sourceText={compareState.sourceText} sourceValidationMessage={compareState.sourceValidationMessage} targetText={compareState.targetText} targetValidationMessage={compareState.targetValidationMessage} />
         </>
       ) : (
         <ToolInProgressState toolLabel={selectedTool.label} />

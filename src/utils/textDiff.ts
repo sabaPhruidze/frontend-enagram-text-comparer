@@ -1,17 +1,16 @@
+import type { LanguageCode } from "../constants/languageOptions";
+
 export type DiffKind = "equal" | "add" | "remove";
 export type DiffSegment = { kind: DiffKind; text: string };
-
 type DiffResult = { leftSegments: DiffSegment[]; rightSegments: DiffSegment[] };
 
-const tokenizeText = (textValue: string) => textValue.match(/[\u10A0-\u10FF]+|\s+/gu) ?? [];
-
+const tokenizeText = (textValue: string, selectedLanguage: LanguageCode) => (selectedLanguage === "ka" ? textValue.match(/[\p{Script=Georgian}]+|\s+/gu) ?? [] : textValue.match(/[A-Za-z]+|\s+/g) ?? []);
 const mergeSegments = (segments: DiffSegment[]) => segments.reduce<DiffSegment[]>((mergedSegments, currentSegment) => {
   const lastSegment = mergedSegments.at(-1);
   if (!lastSegment || lastSegment.kind !== currentSegment.kind) {
     mergedSegments.push(currentSegment);
     return mergedSegments;
   }
-
   lastSegment.text += currentSegment.text;
   return mergedSegments;
 }, []);
@@ -24,17 +23,15 @@ const buildLcsTable = (sourceTokens: string[], targetTokens: string[]) => {
         lcsTable[sourceIndex][targetIndex] = lcsTable[sourceIndex + 1][targetIndex + 1] + 1;
         continue;
       }
-
       lcsTable[sourceIndex][targetIndex] = Math.max(lcsTable[sourceIndex + 1][targetIndex], lcsTable[sourceIndex][targetIndex + 1]);
     }
   }
-
   return lcsTable;
 };
 
-export const compareTexts = (sourceText: string, targetText: string): DiffResult => {
-  const sourceTokens = tokenizeText(sourceText);
-  const targetTokens = tokenizeText(targetText);
+export const compareTexts = (sourceText: string, targetText: string, selectedLanguage: LanguageCode): DiffResult => {
+  const sourceTokens = tokenizeText(sourceText, selectedLanguage);
+  const targetTokens = tokenizeText(targetText, selectedLanguage);
   const lcsTable = buildLcsTable(sourceTokens, targetTokens);
   const leftSegments: DiffSegment[] = [];
   const rightSegments: DiffSegment[] = [];
@@ -49,13 +46,11 @@ export const compareTexts = (sourceText: string, targetText: string): DiffResult
       targetIndex += 1;
       continue;
     }
-
     if (sourceIndex < sourceTokens.length && (targetIndex === targetTokens.length || lcsTable[sourceIndex + 1][targetIndex] >= lcsTable[sourceIndex][targetIndex + 1])) {
       leftSegments.push({ kind: "remove", text: sourceTokens[sourceIndex] });
       sourceIndex += 1;
       continue;
     }
-
     if (targetIndex < targetTokens.length) {
       rightSegments.push({ kind: "add", text: targetTokens[targetIndex] });
       targetIndex += 1;
