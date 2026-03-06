@@ -19,7 +19,7 @@ type TextCompareWorkspaceMobileProps = {
 };
 
 const TextCompareWorkspaceMobile = ({ hasCompared, isCompareEnabled, isComparing, leftSegments, onCompare, onSourceTextChange, onSwapTexts, onTargetTextChange, progressValue, rightSegments, sourceText, targetText }: TextCompareWorkspaceMobileProps) => {
-  const compareButtonClass = `h-12 w-35.5 rounded-md px-4 py-2.5 text-sm leading-7 font-normal text-white ${isCompareEnabled ? "cursor-pointer bg-[#466FE8]" : "cursor-not-allowed bg-[#9598A3]"}`;
+  const compareButtonClass = `h-12 w-35.5 rounded-md px-4 py-2.5 text-sm leading-7 font-normal text-white ${isCompareEnabled ? "cursor-pointer bg-[#466FE8]" : "cursor-not-allowed bg-[#383A4899]"}`;
 
   if (isComparing) {
     return (
