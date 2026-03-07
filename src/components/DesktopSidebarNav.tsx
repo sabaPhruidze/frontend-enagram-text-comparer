@@ -20,7 +20,7 @@ const DesktopSidebarNav = ({ items, onSelectTool, selectedToolId }: DesktopSideb
         !isSelected && item.id === "text-compare" ? "brightness-0 invert" : ""
       }`;
       const buttonClass = isSelected
-        ? "ml-3.25 h-13 w-57.5 rounded-l-[1.875rem] bg-white px-4 text-[#132450]"
+        ? "ml-3.25 h-13 w-57.5 rounded-l-[1.875rem] bg-white px-4 text-[#132450] min-[1440px]:ml-[0.8rem] min-[1440px]:w-[14.4rem]"
         : "h-13 w-full px-5 text-white";
 
       return (

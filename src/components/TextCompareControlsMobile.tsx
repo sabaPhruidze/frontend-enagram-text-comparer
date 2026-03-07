@@ -19,8 +19,8 @@ const TextCompareControlsMobile = ({
   onReset,
   selectedLanguage,
 }: TextCompareControlsMobileProps) => (
-  <section className="px-4 pb-4 pt-6 md:px-7 md:pb-0 lg:px-5">
-    <div className="mx-auto flex w-72 flex-col gap-4 md:min-h-[3.625rem] md:w-full md:flex-row md:items-center md:gap-7 lg:gap-10">
+  <section className="px-4 pb-4 pt-6 md:px-7 md:pb-0 lg:px-5 min-[1440px]:px-4 min-[1440px]:pt-4">
+    <div className="mx-auto flex w-72 flex-col gap-4 md:min-h-[3.625rem] md:w-full md:flex-row md:items-center md:gap-7 lg:gap-10 min-[1440px]:gap-6">
       <LanguageDropdown
         className="w-full md:w-38.75 md:shrink-0"
         onLanguageChange={onLanguageChange}

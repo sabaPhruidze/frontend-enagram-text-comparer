@@ -26,7 +26,7 @@ const SIDEBAR_ITEMS: DesktopSidebarItem[] = TOOL_OPTIONS.map((toolOption) => ({
 }));
 
 const TextCompareDesktopSidebar = ({ onSelectTool, selectedToolId }: TextCompareDesktopSidebarProps) => (
-  <aside className="flex w-60 shrink-0 flex-col bg-[#132450] text-white">
+  <aside className="flex w-60 shrink-0 flex-col bg-[#132450] text-white min-[1440px]:w-[243.2px]">
     <div className="flex-1">
       <DesktopSidebarTopBlock />
       <DesktopSidebarNav items={SIDEBAR_ITEMS} onSelectTool={onSelectTool} selectedToolId={selectedToolId} />
