@@ -19,8 +19,8 @@ const TextCompareWorkspaceEditable = ({
   targetValidationMessage,
 }: EditableWorkspaceProps) => (
   <section className={workspaceSectionClass}>
-    <div className="mx-auto flex w-72 flex-col items-center gap-4 lg:w-full lg:gap-7">
-      <div className="flex w-full flex-col items-center gap-4 lg:flex-row lg:items-start lg:gap-0">
+    <div className="mx-auto flex w-72 flex-col items-center gap-4 md:w-full md:gap-6 lg:gap-7">
+      <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-stretch md:gap-0 lg:items-start">
         <CompareTextPanel
           hasCompared={hasCompared}
           onTextChange={onSourceTextChange}
@@ -29,11 +29,11 @@ const TextCompareWorkspaceEditable = ({
           validationMessage={sourceValidationMessage}
         />
         <button
-          className="flex h-12 w-35.5 cursor-pointer items-center justify-center rounded-md text-[#383A48]/60 lg:mx-3.5 lg:h-8 lg:w-8 lg:shrink-0 lg:self-center lg:rounded-sm"
+          className="flex h-12 w-35.5 cursor-pointer items-center justify-center rounded-md text-[#383A48]/60 md:h-108 md:w-13 md:shrink-0 md:rounded-none lg:mx-3.5 lg:h-8 lg:w-8 lg:self-center lg:rounded-sm"
           onClick={onSwapTexts}
           type="button"
         >
-          <img alt="ტექსტების გაცვლა" className="h-8 w-8 rotate-90 lg:h-6 lg:w-6 lg:rotate-0" src={swapHorizontal} />
+          <img alt="ტექსტების გაცვლა" className="h-8 w-8 rotate-90 md:rotate-0 lg:h-6 lg:w-6" src={swapHorizontal} />
         </button>
         <CompareTextPanel
           hasCompared={hasCompared}

@@ -20,4 +20,4 @@ export type TextCompareWorkspaceMobileProps = {
 export type EditableWorkspaceProps = Omit<TextCompareWorkspaceMobileProps, "isComparing" | "progressValue">;
 export type ComparingWorkspaceProps = Pick<TextCompareWorkspaceMobileProps, "onCompare" | "progressValue">;
 
-export const workspaceSectionClass = "px-4 pb-6 pt-4 lg:px-5 lg:pb-7";
+export const workspaceSectionClass = "px-4 pb-6 pt-4 md:px-7 md:pb-7 lg:px-5";

@@ -19,15 +19,15 @@ const TextCompareControlsMobile = ({
   onReset,
   selectedLanguage,
 }: TextCompareControlsMobileProps) => (
-  <section className="px-4 pb-4 pt-6 lg:px-5 lg:pb-0">
-    <div className="mx-auto flex w-72 flex-col gap-4 lg:min-h-[3.625rem] lg:w-full lg:flex-row lg:items-center lg:gap-10">
+  <section className="px-4 pb-4 pt-6 md:px-7 md:pb-0 lg:px-5">
+    <div className="mx-auto flex w-72 flex-col gap-4 md:min-h-[3.625rem] md:w-full md:flex-row md:items-center md:gap-7 lg:gap-10">
       <LanguageDropdown
-        className="w-full lg:w-38.75 lg:shrink-0"
+        className="w-full md:w-38.75 md:shrink-0"
         onLanguageChange={onLanguageChange}
         selectedLanguage={selectedLanguage}
       />
 
-      <label className="flex h-5.5 w-fit items-center gap-2 lg:min-w-[13.25rem] lg:gap-3">
+      <label className="flex h-5.5 w-fit items-center gap-2 md:min-w-[13.25rem] md:gap-3">
         <input
           checked={isFormattingPreserved}
           className="h-5 w-5 cursor-pointer rounded border border-[#E0E0E0] accent-[#3465E1]"
@@ -38,7 +38,7 @@ const TextCompareControlsMobile = ({
       </label>
 
       <button
-        className={`flex h-10.5 items-center justify-center gap-1 rounded-md px-4 py-2.5 pl-3 lg:ml-auto lg:w-37.5 lg:shrink-0 lg:px-3 lg:py-2.5 lg:pr-4 ${
+        className={`flex h-10.5 items-center justify-center gap-1 rounded-md px-4 py-2.5 pl-3 md:ml-auto md:w-37.5 md:shrink-0 md:px-3 md:py-2.5 md:pr-4 ${
           isResetEnabled ? "cursor-pointer bg-[#466FE8]" : "cursor-not-allowed bg-[#383A4899]"
         }`}
         disabled={!isResetEnabled}
@@ -49,7 +49,7 @@ const TextCompareControlsMobile = ({
         <span className="whitespace-nowrap text-sm leading-7 font-normal tracking-normal text-white">ახლის გახსნა</span>
       </button>
     </div>
-    <div className="mx-auto mt-4 h-px w-72 bg-[#E6E6E6] lg:mt-3 lg:w-full lg:bg-[#EDEDED]" />
+    <div className="mx-auto mt-4 h-px w-72 bg-[#E6E6E6] md:mt-3 md:w-full md:bg-[#EDEDED]" />
   </section>
 );
 
