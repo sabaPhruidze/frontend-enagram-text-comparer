@@ -40,7 +40,7 @@ const TextCompareWorkspaceMobile = ({
 
   if (isComparing) {
     return (
-      <section className="px-4 pb-6 pt-4 md:px-7 md:pb-7">
+      <section className="px-4 pb-6 pt-4 md:px-7 md:pb-7 lg:px-5">
         <div className="mx-auto flex w-72 flex-col items-center pt-56 md:w-full md:pt-40">
           <CompareProgressCard progressValue={progressValue} />
           <button className={`${compareButtonClass} mt-36`} disabled onClick={onCompare} type="button">
@@ -52,9 +52,9 @@ const TextCompareWorkspaceMobile = ({
   }
 
   return (
-    <section className="px-4 pb-6 pt-4 md:px-7 md:pb-7">
+    <section className="px-4 pb-6 pt-4 md:px-7 md:pb-7 lg:px-5">
       <div className="mx-auto flex w-72 flex-col items-center gap-4 md:w-full md:gap-6">
-        <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-stretch md:gap-0">
+        <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-stretch md:gap-0 lg:mx-auto lg:w-178">
           <CompareTextPanel
             hasCompared={hasCompared}
             onTextChange={onSourceTextChange}

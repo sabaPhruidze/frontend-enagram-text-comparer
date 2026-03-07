@@ -1,5 +1,6 @@
 import { useCallback, useMemo, useState } from "react";
 import TextCompareControlsMobile from "./components/TextCompareControlsMobile";
+import TextCompareDesktopSidebar from "./components/TextCompareDesktopSidebar";
 import TextCompareMobileHeader from "./components/TextCompareMobileHeader";
 import TextCompareToolsMenu from "./components/TextCompareToolsMenu";
 import TextCompareWorkspaceMobile from "./components/TextCompareWorkspaceMobile";
@@ -29,10 +30,40 @@ const App = () => {
     setSelectedToolId(toolId);
     setIsToolsMenuOpen(false);
   }, []);
+  const selectedToolContent = isTextCompareTool ? (
+    <>
+      <TextCompareControlsMobile
+        isFormattingPreserved={compareState.isFormattingPreserved}
+        isResetEnabled={compareState.isResetEnabled}
+        onFormattingPreserveChange={compareState.setIsFormattingPreserved}
+        onLanguageChange={compareState.handleLanguageChange}
+        onReset={compareState.handleReset}
+        selectedLanguage={compareState.selectedLanguage}
+      />
+      <TextCompareWorkspaceMobile
+        hasCompared={compareState.hasCompared}
+        isCompareEnabled={compareState.isCompareEnabled}
+        isComparing={compareState.isComparing}
+        leftSegments={compareState.leftSegments}
+        onCompare={compareState.handleCompare}
+        onSourceTextChange={compareState.setSourceText}
+        onSwapTexts={compareState.handleSwapTexts}
+        onTargetTextChange={compareState.setTargetText}
+        progressValue={compareState.progressValue}
+        rightSegments={compareState.rightSegments}
+        sourceText={compareState.sourceText}
+        sourceValidationMessage={compareState.sourceValidationMessage}
+        targetText={compareState.targetText}
+        targetValidationMessage={compareState.targetValidationMessage}
+      />
+    </>
+  ) : (
+    <ToolInProgressState toolLabel={selectedTool.label} />
+  );
 
   return (
     <main className="min-h-screen bg-white">
-      <div className="relative min-h-screen bg-white">
+      <div className="relative min-h-screen bg-white lg:hidden">
         <TextCompareMobileHeader
           isMenuOpen={isToolsMenuOpen}
           onToggleMenu={handleToolsMenuToggle}
@@ -49,36 +80,17 @@ const App = () => {
             tools={toolsToShow}
           />
         </div>
-        {isTextCompareTool ? (
-          <>
-            <TextCompareControlsMobile
-              isFormattingPreserved={compareState.isFormattingPreserved}
-              isResetEnabled={compareState.isResetEnabled}
-              onFormattingPreserveChange={compareState.setIsFormattingPreserved}
-              onLanguageChange={compareState.handleLanguageChange}
-              onReset={compareState.handleReset}
-              selectedLanguage={compareState.selectedLanguage}
-            />
-            <TextCompareWorkspaceMobile
-              hasCompared={compareState.hasCompared}
-              isCompareEnabled={compareState.isCompareEnabled}
-              isComparing={compareState.isComparing}
-              leftSegments={compareState.leftSegments}
-              onCompare={compareState.handleCompare}
-              onSourceTextChange={compareState.setSourceText}
-              onSwapTexts={compareState.handleSwapTexts}
-              onTargetTextChange={compareState.setTargetText}
-              progressValue={compareState.progressValue}
-              rightSegments={compareState.rightSegments}
-              sourceText={compareState.sourceText}
-              sourceValidationMessage={compareState.sourceValidationMessage}
-              targetText={compareState.targetText}
-              targetValidationMessage={compareState.targetValidationMessage}
-            />
-          </>
-        ) : (
-          <ToolInProgressState toolLabel={selectedTool.label} />
-        )}
+        {selectedToolContent}
+      </div>
+
+      <div className="hidden min-h-screen bg-white lg:mx-auto lg:flex lg:w-256">
+        <TextCompareDesktopSidebar
+          onSelectTool={handleToolSelect}
+          selectedToolId={selectedToolId}
+        />
+        <div className="w-196 bg-white">
+          {selectedToolContent}
+        </div>
       </div>
     </main>
   );

@@ -20,7 +20,7 @@ const TextCompareControlsMobile = ({
   selectedLanguage,
 }: TextCompareControlsMobileProps) => {
   return (
-    <section className="px-4 pb-4 pt-6 md:px-7 md:pb-0">
+    <section className="px-4 pb-4 pt-6 md:px-7 md:pb-0 lg:px-5">
       <div className="mx-auto flex w-72 flex-col gap-4 md:w-full md:flex-row md:items-center md:gap-7">
         <LanguageDropdown
           className="w-full md:w-38.75 md:shrink-0"
