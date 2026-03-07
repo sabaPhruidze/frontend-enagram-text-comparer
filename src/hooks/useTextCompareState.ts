@@ -121,4 +121,6 @@ const useTextCompareState = () => {
   };
 };
 
+export type TextCompareState = ReturnType<typeof useTextCompareState>;
+
 export default useTextCompareState;
