@@ -32,7 +32,7 @@ const App = () => {
 
   return (
     <main className="min-h-screen bg-white">
-      <div className="relative min-h-screen bg-white md:mx-auto md:w-[768px]">
+      <div className="relative min-h-screen bg-white">
         <TextCompareMobileHeader
           isMenuOpen={isToolsMenuOpen}
           onToggleMenu={handleToolsMenuToggle}
@@ -40,7 +40,7 @@ const App = () => {
           selectedTool={selectedTool}
         />
         <div
-          className="absolute left-5 top-[7.25rem] z-40 md:left-7 md:top-[8.5rem]"
+          className="absolute left-5 top-29 z-40 md:left-7 md:top-34"
           style={{ width: toolsMenuWidth > 0 ? `${toolsMenuWidth}px` : "auto" }}
         >
           <TextCompareToolsMenu

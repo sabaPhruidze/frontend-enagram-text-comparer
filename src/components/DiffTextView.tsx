@@ -7,7 +7,7 @@ type DiffTextViewProps = {
 
 const DiffTextView = ({ segments, placeholder }: DiffTextViewProps) => {
   return (
-    <div className="h-47.5 w-full overflow-auto rounded-lg bg-[#F0F7FF] p-3 text-sm leading-5.5 text-[#383A48] md:h-108 md:w-[330px] md:p-4">
+    <div className="h-47.5 w-full overflow-auto rounded-lg bg-[#F0F7FF] p-3 text-sm leading-5.5 text-[#383A48] md:h-108 md:p-4">
       {segments.length === 0 ? (
         <span className="text-[#8E98A8]">{placeholder}</span>
       ) : (
