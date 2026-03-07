@@ -31,50 +31,55 @@ const App = () => {
   }, []);
 
   return (
-    <main className="relative min-h-screen bg-white">
-      <TextCompareMobileHeader
-        isMenuOpen={isToolsMenuOpen}
-        onToggleMenu={handleToolsMenuToggle}
-        onTriggerWidthChange={setToolsMenuWidth}
-        selectedTool={selectedTool}
-      />
-      <div className="absolute left-5 top-[7.25rem] z-40" style={{ width: toolsMenuWidth > 0 ? `${toolsMenuWidth}px` : "auto" }}>
-        <TextCompareToolsMenu
-          isOpen={isToolsMenuOpen}
-          onSelectTool={handleToolSelect}
-          tools={toolsToShow}
+    <main className="min-h-screen bg-white">
+      <div className="relative min-h-screen bg-white md:mx-auto md:w-[768px]">
+        <TextCompareMobileHeader
+          isMenuOpen={isToolsMenuOpen}
+          onToggleMenu={handleToolsMenuToggle}
+          onTriggerWidthChange={setToolsMenuWidth}
+          selectedTool={selectedTool}
         />
+        <div
+          className="absolute left-5 top-[7.25rem] z-40 md:left-7 md:top-[8.5rem]"
+          style={{ width: toolsMenuWidth > 0 ? `${toolsMenuWidth}px` : "auto" }}
+        >
+          <TextCompareToolsMenu
+            isOpen={isToolsMenuOpen}
+            onSelectTool={handleToolSelect}
+            tools={toolsToShow}
+          />
+        </div>
+        {isTextCompareTool ? (
+          <>
+            <TextCompareControlsMobile
+              isFormattingPreserved={compareState.isFormattingPreserved}
+              isResetEnabled={compareState.isResetEnabled}
+              onFormattingPreserveChange={compareState.setIsFormattingPreserved}
+              onLanguageChange={compareState.handleLanguageChange}
+              onReset={compareState.handleReset}
+              selectedLanguage={compareState.selectedLanguage}
+            />
+            <TextCompareWorkspaceMobile
+              hasCompared={compareState.hasCompared}
+              isCompareEnabled={compareState.isCompareEnabled}
+              isComparing={compareState.isComparing}
+              leftSegments={compareState.leftSegments}
+              onCompare={compareState.handleCompare}
+              onSourceTextChange={compareState.setSourceText}
+              onSwapTexts={compareState.handleSwapTexts}
+              onTargetTextChange={compareState.setTargetText}
+              progressValue={compareState.progressValue}
+              rightSegments={compareState.rightSegments}
+              sourceText={compareState.sourceText}
+              sourceValidationMessage={compareState.sourceValidationMessage}
+              targetText={compareState.targetText}
+              targetValidationMessage={compareState.targetValidationMessage}
+            />
+          </>
+        ) : (
+          <ToolInProgressState toolLabel={selectedTool.label} />
+        )}
       </div>
-      {isTextCompareTool ? (
-        <>
-          <TextCompareControlsMobile
-            isFormattingPreserved={compareState.isFormattingPreserved}
-            isResetEnabled={compareState.isResetEnabled}
-            onFormattingPreserveChange={compareState.setIsFormattingPreserved}
-            onLanguageChange={compareState.handleLanguageChange}
-            onReset={compareState.handleReset}
-            selectedLanguage={compareState.selectedLanguage}
-          />
-          <TextCompareWorkspaceMobile
-            hasCompared={compareState.hasCompared}
-            isCompareEnabled={compareState.isCompareEnabled}
-            isComparing={compareState.isComparing}
-            leftSegments={compareState.leftSegments}
-            onCompare={compareState.handleCompare}
-            onSourceTextChange={compareState.setSourceText}
-            onSwapTexts={compareState.handleSwapTexts}
-            onTargetTextChange={compareState.setTargetText}
-            progressValue={compareState.progressValue}
-            rightSegments={compareState.rightSegments}
-            sourceText={compareState.sourceText}
-            sourceValidationMessage={compareState.sourceValidationMessage}
-            targetText={compareState.targetText}
-            targetValidationMessage={compareState.targetValidationMessage}
-          />
-        </>
-      ) : (
-        <ToolInProgressState toolLabel={selectedTool.label} />
-      )}
     </main>
   );
 };

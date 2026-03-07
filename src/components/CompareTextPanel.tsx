@@ -13,9 +13,9 @@ const CompareTextPanel = ({ hasCompared, onTextChange, segments, textValue, vali
   if (hasCompared) return <DiffTextView placeholder="დაიწერე ტექსტი..." segments={segments} />;
 
   return (
-    <div className="w-full">
+    <div className="w-full md:w-[330px]">
       <textarea
-        className="h-47.5 w-full resize-none rounded-lg bg-[#F0F7FF] p-3 text-sm leading-5.5 text-[#383A48] outline-none placeholder:text-[#8E98A8]"
+        className="h-47.5 w-full resize-none rounded-lg bg-[#F0F7FF] p-3 text-sm leading-5.5 text-[#383A48] outline-none placeholder:text-[#8E98A8] md:h-108 md:p-4"
         onChange={(event) => onTextChange(event.target.value)}
         placeholder="დაიწერე ტექსტი..."
         value={textValue}
