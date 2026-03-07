@@ -29,7 +29,7 @@ const TextCompareWorkspaceEditable = ({
           validationMessage={sourceValidationMessage}
         />
         <button
-          className="flex h-12 w-35.5 cursor-pointer items-center justify-center rounded-md text-[#383A48]/60 lg:mx-3.5 lg:h-8 lg:w-8 lg:shrink-0 lg:self-center lg:rounded-sm lg:border lg:border-[#132450]"
+          className="flex h-12 w-35.5 cursor-pointer items-center justify-center rounded-md text-[#383A48]/60 lg:mx-3.5 lg:h-8 lg:w-8 lg:shrink-0 lg:self-center lg:rounded-sm"
           onClick={onSwapTexts}
           type="button"
         >

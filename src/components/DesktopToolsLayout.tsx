@@ -9,9 +9,9 @@ type DesktopToolsLayoutProps = {
 };
 
 const DesktopToolsLayout = ({ children, onSelectTool, selectedToolId }: DesktopToolsLayoutProps) => (
-  <div className="flex min-h-screen w-full bg-[#F7F7F7]">
+  <div className="flex min-h-screen w-full bg-white">
     <TextCompareDesktopSidebar onSelectTool={onSelectTool} selectedToolId={selectedToolId} />
-    <div className="min-w-0 flex-1 bg-[#F7F7F7]">{children}</div>
+    <div className="min-w-0 flex-1 bg-white">{children}</div>
   </div>
 );
 
