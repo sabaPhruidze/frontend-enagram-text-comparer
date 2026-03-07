@@ -28,7 +28,7 @@ const MobileToolsLayout = ({ children, onSelectTool, selectedTool, tools }: Mobi
         selectedTool={selectedTool}
       />
       <div
-        className="absolute left-5 top-29 z-40 md:left-7 md:top-34"
+        className="absolute left-5 top-29 z-40 md:left-7 md:top-30"
         style={{ width: toolsMenuWidth > 0 ? `${toolsMenuWidth}px` : "auto" }}
       >
         <TextCompareToolsMenu isOpen={isToolsMenuOpen} onSelectTool={handleToolSelect} tools={tools} />
