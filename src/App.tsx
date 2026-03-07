@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import TextCompareControlsMobile from "./components/TextCompareControlsMobile";
 import TextCompareDesktopSidebar from "./components/TextCompareDesktopSidebar";
 import TextCompareMobileHeader from "./components/TextCompareMobileHeader";
@@ -12,6 +12,9 @@ const App = () => {
   const [isToolsMenuOpen, setIsToolsMenuOpen] = useState(false);
   const [selectedToolId, setSelectedToolId] = useState<ToolId>(TEXT_COMPARE_TOOL_ID);
   const [toolsMenuWidth, setToolsMenuWidth] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(
+    () => typeof window !== "undefined" && window.matchMedia("(min-width: 1024px)").matches,
+  );
   const compareState = useTextCompareState();
   const selectedTool = useMemo(
     () => TOOL_OPTIONS.find((toolOption) => toolOption.id === selectedToolId) ?? TOOL_OPTIONS[0],
@@ -29,6 +32,14 @@ const App = () => {
   const handleToolSelect = useCallback((toolId: ToolId) => {
     setSelectedToolId(toolId);
     setIsToolsMenuOpen(false);
+  }, []);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const desktopMediaQuery = window.matchMedia("(min-width: 1024px)");
+    const handleDesktopBreakpointChange = (event: MediaQueryListEvent) => setIsDesktop(event.matches);
+    desktopMediaQuery.addEventListener("change", handleDesktopBreakpointChange);
+    return () => desktopMediaQuery.removeEventListener("change", handleDesktopBreakpointChange);
   }, []);
   const selectedToolContent = isTextCompareTool ? (
     <>
@@ -61,9 +72,25 @@ const App = () => {
     <ToolInProgressState toolLabel={selectedTool.label} />
   );
 
+  if (isDesktop) {
+    return (
+      <main className="min-h-screen bg-white">
+        <div className="flex min-h-screen w-full bg-white">
+          <TextCompareDesktopSidebar
+            onSelectTool={handleToolSelect}
+            selectedToolId={selectedToolId}
+          />
+          <div className="min-w-0 flex-1 bg-white">
+            {selectedToolContent}
+          </div>
+        </div>
+      </main>
+    );
+  }
+
   return (
     <main className="min-h-screen bg-white">
-      <div className="relative min-h-screen bg-white lg:hidden">
+      <div className="relative min-h-screen bg-white">
         <TextCompareMobileHeader
           isMenuOpen={isToolsMenuOpen}
           onToggleMenu={handleToolsMenuToggle}
@@ -81,16 +108,6 @@ const App = () => {
           />
         </div>
         {selectedToolContent}
-      </div>
-
-      <div className="hidden min-h-screen bg-white lg:mx-auto lg:flex lg:w-256">
-        <TextCompareDesktopSidebar
-          onSelectTool={handleToolSelect}
-          selectedToolId={selectedToolId}
-        />
-        <div className="w-196 bg-white">
-          {selectedToolContent}
-        </div>
       </div>
     </main>
   );

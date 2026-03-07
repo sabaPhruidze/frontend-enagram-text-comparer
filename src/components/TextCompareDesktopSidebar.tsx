@@ -1,5 +1,4 @@
 import enagramLogo from "../assets/enagram-logo.svg";
-import menuEllipsis from "../assets/menu-ellipsis.svg";
 import sidebarCollapse from "../assets/sidebar-collapse.svg";
 import sidebarOrthography from "../assets/sidebar-orthography.svg";
 import sidebarPdfConvert from "../assets/sidebar-pdf-convert.svg";
@@ -24,32 +23,32 @@ const TextCompareDesktopSidebar = ({ onSelectTool, selectedToolId }: TextCompare
   return (
     <aside className="flex w-60 shrink-0 flex-col bg-[#132450] text-white">
       <div className="flex-1">
-        <div className="rounded-br-[1.875rem] bg-[#132450] px-8 pb-7 pt-10">
-          <div className="mb-14 flex items-start justify-between">
+        <div className="rounded-br-[1.875rem] px-8 pb-6 pt-10">
+          <div className="flex items-start justify-between">
             <div className="flex items-center gap-3">
-              <img alt="Enagram ლოგო" className="h-11 w-11" src={enagramLogo} />
+              <img alt="Enagram ლოგო" className="h-11 w-10.5" src={enagramLogo} />
               <p className="text-xs font-semibold tracking-[0.12em] text-white">ENAGRAM</p>
             </div>
-            <img alt="ჩაკეცვა" className="h-5 w-5" src={sidebarCollapse} />
+            <img alt="ჩაკეცვა" className="h-5 w-5 opacity-50" src={sidebarCollapse} />
           </div>
 
-          <div className="flex h-13 items-center gap-2 text-sm leading-5 font-normal text-white">
+          <div className="mt-11 flex h-13 items-center gap-2 text-sm leading-5 font-normal text-white">
             <img alt="მართლმწერი" className="h-6 w-6 shrink-0" src={sidebarOrthography} />
             <span>მართლმწერი</span>
           </div>
         </div>
 
-        <nav className="pr-2">
+        <nav className="mt-1">
           {TOOL_OPTIONS.map((toolOption) => {
             const isSelected = toolOption.id === selectedToolId;
             const sidebarIcon = SIDEBAR_ICONS[toolOption.id];
 
             return (
               <button
-                className={`flex h-13 w-full items-center gap-2 pl-4 pr-6 text-left ${
+                className={`flex h-13 items-center gap-2 text-left ${
                   isSelected
-                    ? "rounded-r-[1.875rem] bg-white text-[#132450]"
-                    : "cursor-pointer text-white"
+                    ? "ml-3.25 w-57.5 rounded-l-[1.875rem] bg-white pl-10 pr-3 text-[#132450]"
+                    : "w-full cursor-pointer pl-8 pr-4 text-white"
                 }`}
                 key={toolOption.id}
                 onClick={() => onSelectTool(toolOption.id)}
@@ -57,12 +56,10 @@ const TextCompareDesktopSidebar = ({ onSelectTool, selectedToolId }: TextCompare
               >
                 <img
                   alt={toolOption.label}
-                  className={`h-6 w-6 shrink-0 ${
-                    !isSelected && toolOption.id === "text-compare" ? "brightness-0 invert" : ""
-                  }`}
+                  className={`h-6 w-6 shrink-0 ${!isSelected && toolOption.id === "text-compare" ? "brightness-0 invert" : ""}`}
                   src={sidebarIcon}
                 />
-                <span className={`text-sm leading-5 ${isSelected ? "font-bold" : "font-normal"}`}>
+                <span className={`text-sm leading-5 tracking-normal ${isSelected ? "font-bold" : "font-normal"}`}>
                   {toolOption.label}
                 </span>
               </button>
@@ -71,14 +68,16 @@ const TextCompareDesktopSidebar = ({ onSelectTool, selectedToolId }: TextCompare
         </nav>
       </div>
 
-      <div className="flex h-20 items-center justify-between border-t border-[#FFFFFF1A] px-3 text-sm leading-5 font-normal text-white">
-        <div className="flex min-w-0 items-center gap-2">
-          <div className="flex h-4 w-4 items-center justify-center rounded-full bg-[#6EA5FF] text-[0.5rem] leading-none text-[#132450]">
-            თ
+      <div className="border-t border-[#9EB9FF33] px-3.5">
+        <div className="flex h-15 items-center justify-between">
+          <div className="flex min-w-0 items-center gap-2">
+            <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white bg-[#9EC8FF] text-sm leading-none font-semibold text-[#132450]">
+              თ
+            </div>
+            <span className="truncate text-sm leading-5 font-normal text-white">თამარ ონიანი</span>
           </div>
-          <span className="truncate">თამარ ინანი</span>
+          <span className="flex h-6 w-6 items-center justify-center text-lg leading-none text-white">•••</span>
         </div>
-        <img alt="მეტი" className="h-6 w-6 shrink-0" src={menuEllipsis} />
       </div>
     </aside>
   );
