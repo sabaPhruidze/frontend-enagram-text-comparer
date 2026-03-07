@@ -7,7 +7,7 @@ const SidebarDotsMenu = () => (
 );
 
 const DesktopSidebarUserRow = () => (
-  <div className="border-t border-[#9EB9FF33] pl-3.5 pr-3 min-[1440px]:pr-3.5">
+  <div className="border-t border-[#9EB9FF33] pl-3.5 pr-3.5">
     <div className="flex h-15 items-center justify-between">
       <div className="flex min-w-0 items-center gap-2">
         <div className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-white bg-[#9EC8FF] text-sm leading-none font-semibold text-[#132450]">

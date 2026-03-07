@@ -1,7 +1,8 @@
-import sidebarPdfConvert from "../assets/sidebar-pdf-convert.svg";
 import sidebarTextCompare from "../assets/sidebar-text-compare.svg";
-import sidebarTextToVoice from "../assets/sidebar-text-to-voice.svg";
-import sidebarVoiceToText from "../assets/sidebar-voice-to-text.svg";
+import toolOrthography from "../assets/tool-orthography.svg";
+import toolPdfConvert from "../assets/tool-pdf-convert.svg";
+import toolTextToVoice from "../assets/tool-text-to-voice.svg";
+import toolVoiceToText from "../assets/tool-voice-to-text.svg";
 import { TOOL_OPTIONS, type ToolId } from "../constants/toolOptions";
 import DesktopSidebarNav, { type DesktopSidebarItem } from "./DesktopSidebarNav";
 import DesktopSidebarTopBlock from "./DesktopSidebarTopBlock";
@@ -13,10 +14,11 @@ type TextCompareDesktopSidebarProps = {
 };
 
 const SIDEBAR_ICONS: Record<ToolId, string> = {
-  "pdf-convert": sidebarPdfConvert,
+  orthography: toolOrthography,
+  "pdf-convert": toolPdfConvert,
   "text-compare": sidebarTextCompare,
-  "text-to-voice": sidebarTextToVoice,
-  "voice-to-text": sidebarVoiceToText,
+  "text-to-voice": toolTextToVoice,
+  "voice-to-text": toolVoiceToText,
 };
 
 const SIDEBAR_ITEMS: DesktopSidebarItem[] = TOOL_OPTIONS.map((toolOption) => ({
@@ -26,7 +28,7 @@ const SIDEBAR_ITEMS: DesktopSidebarItem[] = TOOL_OPTIONS.map((toolOption) => ({
 }));
 
 const TextCompareDesktopSidebar = ({ onSelectTool, selectedToolId }: TextCompareDesktopSidebarProps) => (
-  <aside className="flex w-60 shrink-0 flex-col bg-[#132450] text-white min-[1440px]:w-[243.2px]">
+  <aside className="flex w-[243.2px] shrink-0 flex-col bg-[#132450] text-white">
     <div className="flex-1">
       <DesktopSidebarTopBlock />
       <DesktopSidebarNav items={SIDEBAR_ITEMS} onSelectTool={onSelectTool} selectedToolId={selectedToolId} />

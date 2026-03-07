@@ -19,15 +19,15 @@ const TextCompareControlsMobile = ({
   onReset,
   selectedLanguage,
 }: TextCompareControlsMobileProps) => (
-  <section className="px-4 pb-4 pt-6 md:px-7 md:pb-0 lg:px-5 min-[1440px]:px-4 min-[1440px]:pt-4">
-    <div className="mx-auto flex w-72 flex-col gap-4 md:min-h-[3.625rem] md:w-full md:flex-row md:items-center md:gap-7 lg:gap-10 min-[1440px]:max-w-[71rem]">
+  <section className="px-4 pb-4 pt-6 md:px-7 md:pb-0 lg:px-4 lg:pt-4">
+    <div className="mx-auto flex w-72 flex-col gap-4 md:min-h-[3.625rem] md:w-full md:flex-row md:items-center md:gap-7 lg:max-w-[71rem] lg:gap-6">
       <LanguageDropdown
         className="w-full md:w-38.75 md:shrink-0"
         onLanguageChange={onLanguageChange}
         selectedLanguage={selectedLanguage}
       />
 
-      <label className="flex h-5.5 w-fit items-center gap-2 md:min-w-[13.25rem] md:gap-3 min-[1440px]:min-w-0 min-[1440px]:gap-2">
+      <label className="flex h-5.5 w-fit items-center gap-2 md:min-w-[13.25rem] md:gap-3 lg:min-w-0 lg:gap-2">
         <input
           checked={isFormattingPreserved}
           className="h-5 w-5 cursor-pointer rounded border border-[#E0E0E0] accent-[#3465E1]"
@@ -49,7 +49,7 @@ const TextCompareControlsMobile = ({
         <span className="whitespace-nowrap text-sm leading-7 font-normal tracking-normal text-white">ახლის გახსნა</span>
       </button>
     </div>
-    <div className="mx-auto mt-4 h-px w-72 bg-[#E6E6E6] md:mt-3 md:w-full md:bg-[#EDEDED] min-[1440px]:max-w-[71rem]" />
+    <div className="mx-auto mt-4 h-px w-72 bg-[#E6E6E6] md:mt-3 md:w-full md:bg-[#EDEDED] lg:max-w-[71rem]" />
   </section>
 );
 

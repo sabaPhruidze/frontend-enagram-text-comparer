@@ -25,7 +25,7 @@ const LanguageDropdown = ({ className, onLanguageChange, selectedLanguage }: Lan
     <div className={className ? `relative ${className}` : "relative"} ref={dropdownRef}>
       <button
         aria-expanded={isOpen}
-        className={`flex h-10 w-full items-center rounded-lg border bg-white px-3.5 py-1 pr-1.5 text-left ${isOpen ? "border-[#3465E1]" : "border-[#D2D4D8] min-[1440px]:border-[#E0E0E0]"}`}
+        className={`flex h-10 w-full items-center rounded-lg border bg-white px-3.5 py-1 pr-1.5 text-left ${isOpen ? "border-[#3465E1]" : "border-[#E0E0E0]"}`}
         onClick={() => setIsOpen((currentState) => !currentState)}
         type="button"
       >
