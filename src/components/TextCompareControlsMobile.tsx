@@ -23,7 +23,7 @@ const TextCompareControlsMobile = ({ isFormattingPreserved, isResetEnabled, onFo
           <span className="text-sm leading-5.5 font-normal tracking-[0.01em] text-[#383A48]">ფორმატის შენარჩუნება</span>
         </label>
 
-        <button className={`flex h-10.5 items-center justify-center gap-1 rounded-md px-4 py-2.5 pl-3 md:ml-auto md:h-12 md:min-w-[10.875rem] md:rounded-lg ${isResetEnabled ? "cursor-pointer bg-[#466FE8]" : "cursor-not-allowed bg-[#383A4899]"}`} disabled={!isResetEnabled} onClick={onReset} type="button">
+        <button className={`flex h-10.5 items-center justify-center gap-1 rounded-md px-4 py-2.5 pl-3 md:ml-auto md:w-37.5 md:shrink-0 md:px-3 md:py-2.5 md:pr-4 ${isResetEnabled ? "cursor-pointer bg-[#466FE8]" : "cursor-not-allowed bg-[#383A4899]"}`} disabled={!isResetEnabled} onClick={onReset} type="button">
           <img alt="დამატება" className="h-6 w-6" src={plusAddIcon} />
           <span className="text-sm leading-7 font-normal text-white">ახლის გახსნა</span>
         </button>
