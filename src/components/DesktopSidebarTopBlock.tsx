@@ -10,7 +10,7 @@ const DesktopSidebarTopBlock = () => (
           ENAGRAM
         </p>
       </div>
-      <img alt="Collapse sidebar" className="h-5 w-5 opacity-50" src={sidebarCollapse} />
+      <img alt="Collapse sidebar" className="h-5 w-5" src={sidebarCollapse} />
     </div>
   </div>
 );
