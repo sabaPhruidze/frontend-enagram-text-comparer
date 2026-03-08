@@ -4,7 +4,7 @@ import sidebarCollapse from "../assets/sidebar-collapse.svg";
 const DesktopSidebarTopBlock = () => (
   <div className="rounded-br-[1.875rem] px-6 pb-4 pt-11.25">
     <div className="flex items-start justify-between">
-      <div className="flex h-11 w-[6.184rem] items-center gap-3">
+      <div className="flex h-11 w-[6.875rem] items-center gap-3">
         <img
           alt="Enagram logo"
           className="h-11 w-[2.665625rem]"
