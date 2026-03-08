@@ -47,7 +47,12 @@ const TextCompareWorkspaceEditable = ({
           validationMessage={targetValidationMessage}
         />
       </div>
-      <CompareActionButton disabled={!isCompareEnabled} isEnabled={isCompareEnabled} onCompare={onCompare} />
+      <CompareActionButton
+        disabled={!isCompareEnabled}
+        hasCompared={hasCompared}
+        isEnabled={isCompareEnabled}
+        onCompare={onCompare}
+      />
     </div>
   </section>
 );
