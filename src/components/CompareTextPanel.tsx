@@ -2,6 +2,8 @@ import type { DiffSegment } from "../utils/textDiff";
 import DiffTextView from "./DiffTextView";
 
 type CompareTextPanelProps = {
+  fieldId: string;
+  fieldName: string;
   hasCompared: boolean;
   onTextChange: (value: string) => void;
   segments: DiffSegment[];
@@ -10,6 +12,8 @@ type CompareTextPanelProps = {
 };
 
 const CompareTextPanel = ({
+  fieldId,
+  fieldName,
   hasCompared,
   onTextChange,
   segments,
@@ -23,6 +27,8 @@ const CompareTextPanel = ({
     <div className="w-full md:flex-1 md:min-w-0 lg:basis-0">
       <textarea
         className="h-47.5 w-full resize-none rounded-lg bg-[#F0F7FF] p-3 text-sm leading-5.5 text-[#383A48] outline-none placeholder:text-[#8E98A8] md:h-108 md:p-4 md:text-lg md:leading-6.5 md:placeholder:text-[#383A48]/60 lg:p-3"
+        id={fieldId}
+        name={fieldName}
         onChange={(event) => onTextChange(event.target.value)}
         placeholder="დაიწყე წერა..."
         value={textValue}

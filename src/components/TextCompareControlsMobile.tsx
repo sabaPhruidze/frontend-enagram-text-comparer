@@ -27,10 +27,12 @@ const TextCompareControlsMobile = ({
         selectedLanguage={selectedLanguage}
       />
 
-      <label className="flex h-5.5 w-fit items-center gap-2 md:min-w-[13.25rem] md:gap-3 lg:min-w-0 lg:gap-2">
+      <label className="flex h-5.5 w-fit items-center gap-2 rounded md:min-w-[13.25rem] md:gap-3 lg:min-w-0 lg:gap-2">
         <input
           checked={isFormattingPreserved}
           className="h-5 w-5 cursor-pointer rounded border border-[#E0E0E0] accent-[#3465E1]"
+          id="preserve-formatting"
+          name="preserveFormatting"
           onChange={(event) => onFormattingPreserveChange(event.target.checked)}
           type="checkbox"
         />
