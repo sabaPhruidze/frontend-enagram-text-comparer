@@ -25,18 +25,22 @@ const LanguageDropdown = ({ className, onLanguageChange, selectedLanguage }: Lan
     <div className={className ? `relative ${className}` : "relative"} ref={dropdownRef}>
       <button
         aria-expanded={isOpen}
-        className={`flex h-10 w-full items-center rounded-lg border bg-white px-3.5 py-1 pr-1.5 text-left ${isOpen ? "border-[#3465E1]" : "border-[#E0E0E0]"}`}
+        className={`flex h-10 w-full items-center rounded-lg border bg-white py-1 pl-3.5 pr-1.5 text-left ${isOpen ? "border-[#3465E1]" : "border-[#E0E0E0]"}`}
         onClick={() => setIsOpen((currentState) => !currentState)}
         type="button"
       >
         <p className="text-sm leading-5.5 font-normal text-[#383A48]">{selectedLanguageLabel}</p>
-        <div className={`ml-auto transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}><SelectChevron /></div>
+        <div className={`ml-auto flex h-6 w-6 items-center justify-center transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}><SelectChevron /></div>
       </button>
 
-      <div className={`absolute left-0 top-10 z-20 w-full overflow-hidden rounded-b-2xl border border-[#3465E1] bg-white transition-all duration-200 ${isOpen ? "max-h-32 opacity-100" : "pointer-events-none max-h-0 border-transparent opacity-0"}`}>
+      <div
+        className={`absolute left-0 top-[calc(100%+4px)] z-20 w-full rounded-lg border bg-white transition-all duration-200 ${
+          isOpen ? "translate-y-0 border-[#3465E1] opacity-100" : "pointer-events-none -translate-y-1 border-transparent opacity-0"
+        }`}
+      >
         {LANGUAGE_OPTIONS.map((languageOption) => (
           <button
-            className="flex h-11 w-full cursor-pointer items-center gap-3 px-3.5 text-left"
+            className="flex h-[42px] w-full cursor-pointer items-center gap-3 px-4 text-left"
             key={languageOption.code}
             onClick={() => { onLanguageChange(languageOption.code); setIsOpen(false); }}
             type="button"

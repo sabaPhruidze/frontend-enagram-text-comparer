@@ -19,7 +19,7 @@ const TextCompareWorkspaceEditable = ({
   targetValidationMessage,
 }: EditableWorkspaceProps) => (
   <section className={workspaceSectionClass}>
-    <div className="mx-auto flex w-72 flex-col items-center gap-4 md:w-full md:gap-6 lg:max-w-[71rem] lg:gap-6">
+    <div className="mx-auto flex h-[652px] w-72 flex-col items-center gap-4 md:w-full md:gap-6 lg:max-w-[71rem] lg:gap-6">
       <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-stretch md:gap-0 lg:items-stretch">
         <CompareTextPanel
           hasCompared={hasCompared}
