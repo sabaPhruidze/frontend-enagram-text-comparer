@@ -19,7 +19,7 @@ const TextCompareWorkspaceEditable = ({
   targetValidationMessage,
 }: EditableWorkspaceProps) => (
   <section className={workspaceSectionClass}>
-    <div className="mx-auto flex h-[652px] w-72 flex-col items-center gap-4 md:w-full md:gap-6 lg:max-w-[71rem] lg:gap-6">
+    <div className="mx-auto flex h-[400px] w-72 flex-col items-center gap-4 md:w-full md:gap-6 lg:max-w-[71rem] lg:gap-6">
       <div className="flex w-full flex-col items-center gap-4 md:flex-row md:items-stretch md:gap-0 lg:items-stretch">
         <CompareTextPanel
           fieldId="source-text"
@@ -35,7 +35,11 @@ const TextCompareWorkspaceEditable = ({
           onClick={onSwapTexts}
           type="button"
         >
-          <img alt="\u10E2\u10D4\u10E5\u10E1\u10E2\u10D4\u10D1\u10D8\u10E1 \u10D2\u10D0\u10EA\u10D5\u10DA\u10D0" className="h-8 w-8 rotate-90 md:rotate-0" src={swapHorizontal} />
+          <img
+            alt="\u10E2\u10D4\u10E5\u10E1\u10E2\u10D4\u10D1\u10D8\u10E1 \u10D2\u10D0\u10EA\u10D5\u10DA\u10D0"
+            className="h-8 w-8 rotate-90 md:rotate-0"
+            src={swapHorizontal}
+          />
         </button>
         <CompareTextPanel
           fieldId="target-text"

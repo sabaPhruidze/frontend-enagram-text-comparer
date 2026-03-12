@@ -1,4 +1,4 @@
-import type { LanguageCode } from "../constants/languageOptions";
+﻿import type { LanguageCode } from "../constants/languageOptions";
 
 const georgianLetterPattern = /\p{Script=Georgian}/u;
 const englishLetterPattern = /[A-Za-z]/;
@@ -30,7 +30,10 @@ export const hasInvalidLettersForLanguage = (
 
 export const getLanguageValidationMessage = (rawText: string, selectedLanguage: LanguageCode) => {
   if (!hasInvalidLettersForLanguage(rawText, selectedLanguage)) return "";
-  return selectedLanguage === "ka" ? "არასწორი ენა: მხოლოდ ქართული ასოებია დაშვებული." : "Wrong language: only English letters are allowed.";
+
+  return selectedLanguage === "ka"
+    ? "\u10d0\u10e0\u10d0\u10e1\u10ec\u10dd\u10e0\u10d8 \u10d4\u10dc\u10d0: \u10db\u10ee\u10dd\u10da\u10dd\u10d3 \u10e5\u10d0\u10e0\u10d7\u10e3\u10da\u10d8 \u10d0\u10e1\u10dd\u10d4\u10d1\u10d8\u10d0 \u10d3\u10d0\u10e8\u10d5\u10d4\u10d1\u10e3\u10da\u10d8."
+    : "\u10d0\u10e0\u10d0\u10e1\u10ec\u10dd\u10e0\u10d8 \u10d4\u10dc\u10d0: \u10db\u10ee\u10dd\u10da\u10dd\u10d3 \u10d8\u10dc\u10d2\u10da\u10d8\u10e1\u10e3\u10e0\u10d8 \u10d0\u10e1\u10dd\u10d4\u10d1\u10d8\u10d0 \u10d3\u10d0\u10e8\u10d5\u10d4\u10d1\u10e3\u10da\u10d8.";
 };
 
 export const tokenizeTextByLanguage = (rawText: string, selectedLanguage: LanguageCode) => (

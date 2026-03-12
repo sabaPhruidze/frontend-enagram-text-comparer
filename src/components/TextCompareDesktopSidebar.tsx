@@ -33,7 +33,7 @@ const TextCompareDesktopSidebar = ({
   onSelectTool,
   selectedToolId,
 }: TextCompareDesktopSidebarProps) => (
-  <aside className="flex w-60 shrink-0 flex-col bg-[#132450] text-white">
+  <aside className="sticky top-0 self-start flex h-screen w-60 shrink-0 flex-col overflow-y-auto bg-[#132450] text-white">
     <div className="flex-1">
       <DesktopSidebarTopBlock />
       <DesktopSidebarNav
